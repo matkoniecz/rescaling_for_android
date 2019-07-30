@@ -1,9 +1,11 @@
 # requires imagemagick
 # on Ubuntu installable with
 # sudo apt-get install imagemagick
-def rescale_square(input_file, output_path, size)
-  output_file = input.replace(/\.[^\.].*$/) + ".jpeg"
-  `convert "#{input_file}" resize #{size}x#{size} "#{output_path}#{output_file}"`
+def rescale_square(input_filepath, output_folder_path, size)
+  input_filepath = input_filepath.replace(/\.[^\.].*$/) + ".jpeg"
+  output_filepath = "#{output_folder_path}#{output_file}"
+  convert_command = "resize #{size}x#{size}"
+  `convert "#{input_filepath}" #{convert_command} "#{output_filepath}"`
 end
 
 def generate_drawable(input_filepath, output_path_root)
@@ -14,8 +16,8 @@ def generate_drawable(input_filepath, output_path_root)
     { name: "drawable-xxhdpi", size: 384 },
   ]
   drawables.each do |drawable|
-    output_filepath = output_path_root + drawable[:name]
-    rescale_square(input_filepath, output_filepath, drawable[:size])
+    output_folder_path = output_path_root + drawable[:name]
+    rescale_square(input_filepath, output_folder_path, drawable[:size])
   end
 end
 
