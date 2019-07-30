@@ -1,11 +1,22 @@
 # requires imagemagick
 # on Ubuntu installable with
 # sudo apt-get install imagemagick
+
+def quality
+  85
+end
+
+def execute_command(command)
+  puts command
+  `#{command}`
+end
+
 def rescale_square(input_filepath, output_folder_path, size)
-  input_filepath = input_filepath.replace(/\.[^\.].*$/) + ".jpeg"
-  output_filepath = "#{output_folder_path}#{output_file}"
-  convert_command = "resize #{size}x#{size}"
-  `convert "#{input_filepath}" #{convert_command} "#{output_filepath}"`
+  output_filename = File.basename(input_filepath, ".*") + "#{quality}.jpeg"
+  output_filepath = "#{output_folder_path}#{output_filename}"
+  # recommended para,eters from https://stackoverflow.com/a/44208640/4130619
+  convert_command = "-resize #{size}x#{size} -sampling-factor 4:2:0 -strip -quality #{quality} -interlace JPEG -colorspace RGB"
+  execute_command("convert \"#{input_filepath}\" #{convert_command} \"#{output_filepath}\"")
 end
 
 def generate_drawable(input_filepath, output_path_root)
@@ -23,7 +34,9 @@ end
 
 def main
   output_path_root = "/home/mateusz/Documents/StreetComplete/app/src/main/res/"
-  generate_drawable(ARGV[0], output_path_root)
+  Dir["*.{png,jpg,jpeg}"].each do |file|
+    generate_drawable(file, output_path_root)
+  end
 end
 
 main
