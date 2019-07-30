@@ -6,7 +6,7 @@ def rescale_square(input_file, output_path, size)
   `convert "#{input_file}" resize #{size}x#{size} "#{output_path}#{output_file}"`
 end
 
-def generate_drawable(output_path_root, input_filename)
+def generate_drawable(input_filepath, output_path_root)
   drawables = [
     { name: "drawable-mdpi", size: 128 },
     { name: "drawable-hdpi", size: 192 },
@@ -14,13 +14,14 @@ def generate_drawable(output_path_root, input_filename)
     { name: "drawable-xxhdpi", size: 384 },
   ]
   drawables.each do |drawable|
-    rescale_square(input_filename, output_path_root + drawable[:name], drawable[:size])
+    output_filepath = output_path_root + drawable[:name]
+    rescale_square(input_filepath, output_filepath, drawable[:size])
   end
 end
 
 def main
   output_path_root = "/home/mateusz/Documents/StreetComplete/app/src/main/res/"
-  generate_drawable(output_path_root, ARGV[0])
+  generate_drawable(ARGV[0], output_path_root)
 end
 
 main
