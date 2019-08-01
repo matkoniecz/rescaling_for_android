@@ -2,20 +2,16 @@
 # on Ubuntu installable with
 # sudo apt-get install imagemagick
 
-def quality
-  85
-end
-
 def execute_command(command)
   puts command
   `#{command}`
 end
 
 def rescale_square(input_filepath, output_folder_path, size)
-  output_filename = File.basename(input_filepath, ".*") + "#{quality}.jpeg"
-  output_filepath = "#{output_folder_path}#{output_filename}"
+  output_filename = File.basename(input_filepath, ".*") + ".jpg"
+  output_filepath = File.join(output_folder_path, output_filename)
   # recommended para,eters from https://stackoverflow.com/a/44208640/4130619
-  convert_command = "-resize #{size}x#{size} -sampling-factor 4:2:0 -strip -quality #{quality} -interlace JPEG -colorspace RGB"
+  convert_command = "-resize #{size}x#{size} -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB"
   execute_command("convert \"#{input_filepath}\" #{convert_command} \"#{output_filepath}\"")
 end
 
