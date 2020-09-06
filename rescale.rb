@@ -4,9 +4,7 @@
 
 def main
   output_path_root = "/home/mateusz/Documents/install_moje/StreetComplete/app/src/main/res/"
-  if Dir.exist?(output_path_root) == false
-    raise "nonexisting folder"
-  end
+  raise "nonexisting folder" if Dir.exist?(output_path_root) == false
   Dir["*.{png,jpg,jpeg}"].each do |file|
     generate_drawable(file, output_path_root)
   end
