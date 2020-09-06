@@ -3,7 +3,7 @@
 # sudo apt-get install imagemagick
 
 def main
-  output_path_root = "/home/mateusz/Documents/StreetComplete/app/src/main/res/"
+  output_path_root = "/home/mateusz/Documents/install_moje/StreetComplete/app/src/main/res/"
   Dir["*.{png,jpg,jpeg}"].each do |file|
     generate_drawable(file, output_path_root)
   end
