@@ -2,15 +2,19 @@
 # on Ubuntu installable with
 # sudo apt-get install imagemagick
 
-def main
-  output_path_root = "/home/mateusz/Documents/install_moje/StreetComplete/app/src/main/res/"
-  raise "nonexisting folder" if Dir.exist?(output_path_root) == false
-  Dir["*.{png,jpg,jpeg}"].each do |file|
-    generate_drawable(file, output_path_root)
+def output_folder
+  for possible_path in [
+    "/home/mateusz/Documents/install_moje/StreetComplete/app/src/main/res/",
+    "/home/mateusz/Desktop/precopied/StreetComplete/app/src/main/res/",
+  ]
+    if Dir.exist?(possible_path)
+      return possible_path
+    end
   end
+  raise "all possible paths point to a nonexisting folder"
 end
 
-def generate_drawable(input_filepath, output_path_root)
+def drawable_sizing
   drawables_standard = [
     { name: "drawable-mdpi", size: '128x128' },
     { name: "drawable-hdpi", size: '192x192' },
@@ -24,9 +28,19 @@ def generate_drawable(input_filepath, output_path_root)
     { name: "drawable-xhdpi", size: '320x240' },
     { name: "drawable-xxhdpi", size: '480x360' },
   ]
-  drawables = drawables_standard
-  #drawables = drawables_for_two_by_two_column
-  drawables.each do |drawable|
+  return drawables_standard
+  #return drawables_for_two_by_two_column
+end
+
+def main
+  output_path_root = output_folder()
+  Dir["*.{png,jpg,jpeg}"].each do |file|
+    generate_drawable(file, output_path_root)
+  end
+end
+
+def generate_drawable(input_filepath, output_path_root)
+  drawable_sizing().each do |drawable|
     output_folder_path = output_path_root + drawable[:name]
     rescale_square(input_filepath, output_folder_path, drawable[:size])
   end
