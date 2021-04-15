@@ -4,6 +4,7 @@
 
 def output_folder
   for possible_path in [
+    "/home/mateusz/Documents/install_moje/OSM software/StreetComplete/app/src/main/res/",
     "/home/mateusz/Documents/install_moje/StreetComplete/app/src/main/res/",
     "/home/mateusz/Desktop/precopied/StreetComplete/app/src/main/res/",
   ]
