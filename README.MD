@@ -1,10 +1,12 @@
 >  but how on earth do I manage to get the pictures into Android Studio?
 
+Android app expects images to be provided not once, but into multiple sizes.
+
 Manual resizing images and putting them into `app/src/main/res/drawable-mdpi`, `app/src/main/res/drawable-hdpi`, `app/src/main/res/drawable-xhpi`, `app/src/main/res/drawable-xxhdpi` folders is quite obnoxious.
 
-I was unable to automate it using any Android Studio feature, I failed to find an existing way to automate it (scripts/plugins/whatever).
+I was unable to automate it using built-in Android Studio feature, or with a working plugin.
 
-I ended creating this Ruby script for doing this.
+I ended creating this Ruby script achieving this.
 
 It can rescale images for Android programs at proper locations.
 
