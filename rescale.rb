@@ -16,7 +16,7 @@ def output_folder
 end
 
 def drawable_sizing
-  drawables_standard = [
+  drawables_for_three_colums = [
     { name: "drawable-mdpi", size: '128x128' },
     { name: "drawable-hdpi", size: '192x192' },
     { name: "drawable-xhdpi", size: '256x256' },
