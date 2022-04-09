@@ -29,7 +29,7 @@ def drawable_sizing
     { name: "drawable-xhdpi", size: '320x240' },
     { name: "drawable-xxhdpi", size: '480x360' },
   ]
-  return drawables_standard
+  return drawables_for_three_colums
   #return drawables_for_two_by_two_column
 end
 
