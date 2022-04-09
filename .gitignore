@@ -1,5 +1,9 @@
-# ignoire input files
+# ignore input files
 *.jpg
+*.JPG
 *.jpeg 
+*.JPEG
 *.png
+*.PNG
 *.xcf
+*.XCF
